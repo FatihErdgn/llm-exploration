@@ -11,9 +11,21 @@ prompts, decoder_input_data, decoder_target_data, tokenizer = preprocess_data(da
 VOCAB_SIZE = len(tokenizer.word_index) + 1  # Güncel VOCAB_SIZE
 save_tokenizer(tokenizer)  # Tokenizer'ı kaydet
 
-print("GPUs:", tf.config.list_physical_devices('GPU'))
-print("TensorFlow version:", tf.__version__)
+gpus = tf.config.list_physical_devices('GPU')
+
+print(gpus)
 print("GPU support?:", tf.test.is_built_with_cuda())
+
+if gpus:
+    try:
+        # Yalnızca GPU'ları görünür yapın
+        tf.config.set_visible_devices(gpus[0], 'GPU')
+        # Bellek büyümesini etkinleştirerek, GPU bellek kullanımını kademeli hale getirin
+        tf.config.experimental.set_memory_growth(gpus[0], True)
+    except RuntimeError as e:
+        print("Hata:", e)
+else:
+    print("GPU bulunamadı.")
 
 # 3. Modeli tanımla ve eğit
 model = define_model()
