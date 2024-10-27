@@ -4,19 +4,92 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GPT-like Chatbot</title>
+    <style>
+        /* Genel stil ayarları */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        /* Kart görünümü */
+        .container {
+            background-color: #ffffff;
+            border-radius: 8px;
+            padding: 20px;
+            max-width: 500px;
+            width: 100%;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        label {
+            font-weight: bold;
+            color: #555;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        h2 {
+            color: #333;
+            margin-top: 20px;
+            font-size: 20px;
+        }
+
+        p {
+            color: #555;
+            font-size: 16px;
+        }
+
+    </style>
 </head>
 <body>
-    <h1>GPT-like Chatbot</h1>
-    <form action="/predict" method="post">
-        <label for="input_text">Enter your message:</label><br><br>
-        <input type="text" id="input_text" name="input_text" placeholder="Type a question" required><br><br>
-        <button type="submit">Get Response</button>
-    </form>
-    {% if response %}
-        <h2>Input:</h2>
-        <p>{{ input_text }}</p>
-        <h2>Response:</h2>
-        <p>{{ response }}</p>
-    {% endif %}
+    <div class="container">
+        <h1>GPT-like Chatbot</h1>
+        <form action="/predict" method="post">
+            <label for="input_text">Enter your message:</label><br>
+            <input type="text" id="input_text" name="input_text" placeholder="Type a question" required>
+            <button type="submit">Get Response</button>
+        </form>
+        
+        {% if response %}
+            <h2>Input:</h2>
+            <p>{{ input_text }}</p>
+            <h2>Response:</h2>
+            <p>{{ response }}</p>
+        {% endif %}
+    </div>
 </body>
 </html>
