@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GPT-like Chatbot</title>
+</head>
+<body>
+    <h1>GPT-like Chatbot</h1>
+    <form action="/predict" method="post">
+        <label for="input_text">Enter your message:</label><br><br>
+        <input type="text" id="input_text" name="input_text" placeholder="Type a question" required><br><br>
+        <button type="submit">Get Response</button>
+    </form>
+    {% if response %}
+        <h2>Input:</h2>
+        <p>{{ input_text }}</p>
+        <h2>Response:</h2>
+        <p>{{ response }}</p>
+    {% endif %}
+</body>
+</html>
