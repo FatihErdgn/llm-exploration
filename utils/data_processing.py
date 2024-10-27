@@ -4,12 +4,18 @@ from tensorflow.keras.preprocessing.sequence import pad_sequences
 from datasets import load_dataset
 from config import MAX_LEN, VOCAB_SIZE
 import os
+from dotenv import load_dotenv
 import numpy as np
+
+# .env dosyasından ortam değişkenlerini yükle
+load_dotenv()
 
 # Hugging Face veri setini yükle
 def load_data():
-    os.environ["HF_TOKEN"] = "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"
-    data = load_dataset("nvidia/HelpSteer", token=os.getenv("HF_TOKEN"))
+    hf_token = os.getenv("HF_TOKEN")
+    if hf_token is None:
+        raise ValueError("HF_TOKEN is not set in the environment variables.")
+    data = load_dataset("nvidia/HelpSteer", token=hf_token)
     return data
 
 # Tokenizer işlemleri ve veri hazırlığı
