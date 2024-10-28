@@ -1,7 +1,7 @@
 # config.py
-MAX_LEN = 200
-VOCAB_SIZE = 10000  # Tokenizer kelime sayısı (data_processing.py’de otomatik güncellenecek)
-EMBEDDING_DIM = 64
-LSTM_UNITS = 64
+MAX_LEN = 20
+VOCAB_SIZE = 20  # Tokenizer kelime sayısı (data_processing.py’de otomatik güncellenecek)
+EMBEDDING_DIM = 128
+LSTM_UNITS = 128
 BATCH_SIZE = 64
-EPOCHS = 100
+EPOCHS = 50

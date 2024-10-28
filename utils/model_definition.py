@@ -1,6 +1,7 @@
 # utils/model_definition.py
 from tensorflow.keras.models import Model
 from tensorflow.keras.layers import Input, Embedding, LSTM, Dense
+from tensorflow.keras.optimizers import Adam
 from config import MAX_LEN, VOCAB_SIZE, EMBEDDING_DIM, LSTM_UNITS
 
 def define_model():
@@ -23,5 +24,6 @@ def define_model():
     
     # Modeli derle ve dön
     model = Model([encoder_inputs, decoder_inputs], output)
-    model.compile(optimizer='adam', loss='sparse_categorical_crossentropy', metrics=['accuracy'])
+    optimizer=Adam(learning_rate=0.0005)
+    model.compile(optimizer=optimizer, loss='sparse_categorical_crossentropy', metrics=['accuracy'])
     return model

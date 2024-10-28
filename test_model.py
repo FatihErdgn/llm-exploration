@@ -15,21 +15,23 @@ def test_model(test_text):
     input_sequence = pad_sequences(input_sequence, maxlen=MAX_LEN, padding='post')
     print("Tokenized Test Input:", input_sequence)
 
-    # Tahmin döngüsü
-    predicted_sequence = []
+    # Boş bir decoder girişi ile başlayın
     current_input = np.zeros((1, MAX_LEN))
+    predicted_sequence = []
+
     for i in range(MAX_LEN):
+        # Model tahmini yapar
         prediction = model.predict([input_sequence, current_input])
         predicted_id = np.argmax(prediction[0, i, :])
-        
+
         # Durdurma koşulu: Eğer model sürekli sıfır tahmin ediyorsa döngüyü kır
         if predicted_id == 0:
             break
-        
-        # Tahmini sonraki giriş olarak kullan
+
+        # Tahmin edilen kelimeyi tahmin dizisine ekleyin
         predicted_sequence.append(predicted_id)
-        current_input[0, i] = predicted_id  # Tahmini `decoder` girdisine ekleyin
-    
+        current_input[0, i] = predicted_id  # Her adımdaki tahmini `decoder` girdisine ekleyin
+
     # Kelimeleri çözümleyin
     decoded_words = [tokenizer.index_word.get(idx, "") for idx in predicted_sequence]
     response_text = " ".join(decoded_words)

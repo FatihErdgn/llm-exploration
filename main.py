@@ -34,7 +34,7 @@ model = define_model()
 # Modeli eğit
 history = model.fit(
     [prompts, decoder_input_data],
-    decoder_target_data,  # Ek eksen olmadan
+    decoder_target_data[..., np.newaxis],  # Ek eksen olmadan
     batch_size=BATCH_SIZE,
     epochs=EPOCHS,
     validation_split=0.2
@@ -44,3 +44,5 @@ history = model.fit(
 # 4. Modeli kaydet
 model.save("models/gpt_model.h5")
 print("Model saved successfully.")
+
+
