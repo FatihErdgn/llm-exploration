@@ -15,6 +15,7 @@ gpus = tf.config.list_physical_devices('GPU')
 
 print(gpus)
 print("GPU support?:", tf.test.is_built_with_cuda())
+print("Is GPU available?:",tf.test.is_gpu_available())
 
 if gpus:
     try:
@@ -27,15 +28,18 @@ if gpus:
 else:
     print("GPU bulunamadı.")
 
-# 3. Modeli tanımla ve eğit
+# 3. Modeli tanımla
 model = define_model()
+
+# Modeli eğit
 history = model.fit(
     [prompts, decoder_input_data],
-    decoder_target_data[..., np.newaxis],  # Hedef veriye ek bir eksen eklenir
+    decoder_target_data,  # Ek eksen olmadan
     batch_size=BATCH_SIZE,
     epochs=EPOCHS,
     validation_split=0.2
 )
+
 
 # 4. Modeli kaydet
 model.save("models/gpt_model.h5")

@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GPT-like Chatbot</title>
     <style>
-        /* Genel stil ayarları */
+        /* Stil ayarları */
         body {
             font-family: Arial, sans-serif;
             background-color: #f4f4f9;
@@ -16,7 +16,6 @@
             margin: 0;
         }
 
-        /* Kart görünümü */
         .container {
             background-color: #ffffff;
             border-radius: 8px;
@@ -27,15 +26,8 @@
             text-align: center;
         }
 
-        h1 {
-            color: #333;
-        }
-
-        label {
-            font-weight: bold;
-            color: #555;
-        }
-
+        h1 { color: #333; }
+        label { font-weight: bold; color: #555; }
         input[type="text"] {
             width: 100%;
             padding: 10px;
@@ -46,7 +38,6 @@
             font-size: 16px;
             box-sizing: border-box;
         }
-
         button {
             background-color: #4CAF50;
             color: white;
@@ -57,22 +48,9 @@
             border-radius: 4px;
             transition: background-color 0.3s ease;
         }
-
-        button:hover {
-            background-color: #45a049;
-        }
-
-        h2 {
-            color: #333;
-            margin-top: 20px;
-            font-size: 20px;
-        }
-
-        p {
-            color: #555;
-            font-size: 16px;
-        }
-
+        button:hover { background-color: #45a049; }
+        h2 { color: #333; margin-top: 20px; font-size: 20px; }
+        p { color: #555; font-size: 16px; }
     </style>
 </head>
 <body>
@@ -84,6 +62,7 @@
             <button type="submit">Get Response</button>
         </form>
         
+        <!-- Cevap alanını göster -->
         {% if response %}
             <h2>Input:</h2>
             <p>{{ input_text }}</p>
